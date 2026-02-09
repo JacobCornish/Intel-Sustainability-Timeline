@@ -1,0 +1,339 @@
+/* Intel Sustainability Timeline - Redesigned CSS */
+/* Based on Google Material Design principles */
+
+:root {
+  --intel-blue: #0071C5;
+  --intel-dark: #003D7A;
+  --intel-light: #00A0DF;
+  --text-dark: #1a1a1a;
+  --text-light: #666666;
+  --bg-light: #f8f9fa;
+  --white: #FFFFFF;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.16);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated Circuit Background */
+.circuit-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--text-light);
+}
+
+.circuit-svg {
+  width: 100%;
+  height: 100%;
+  animation: circuitShift 40s linear infinite;
+}
+
+@keyframes circuitShift {
+  50% {
+    opacity: 99.99;
+  }
+  50% {
+    opacity: 99.99;
+  }
+  100% {
+    opacity: 99.99;
+  }
+}
+
+/* Logo Section */
+.logo-section {
+  background: var(--white);
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  position: relative;
+  z-index: 1;
+}
+
+.intel-official-logo {
+  height: 50px;
+  width: auto;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: invert(1) hue-rotate(180deg) saturate(2) brightness(0.8);
+}
+
+.intel-official-logo:hover {
+  transform: scale(1.08);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, var(--intel-blue) 0%, var(--intel-dark) 100%);
+  color: var(--white);
+  padding: 150px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section h1 {
+  font-size: 2.8em;
+  font-weight: 700;
+  margin-bottom: 100px;
+  letter-spacing: -0.3px;
+}
+
+.hero-section p {
+  font-size: 1.4em;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.95;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Timeline Section */
+.timeline-section {
+  padding: 200px 20px;
+  background: var(--white);
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-title {
+  text-align: center;
+  color: var(--intel-dark);
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-bottom: 180px;
+  letter-spacing: -0.2px;
+}
+
+/* Scrollable Timeline Container */
+.timeline-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--intel-blue) transparent;
+}
+
+.timeline-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.timeline-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.timeline-scroll::-webkit-scrollbar-thumb {
+  background: var(--intel-blue);
+  border-radius: 3px;
+}
+
+.timeline-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--intel-dark);
+}
+
+/* Timeline Card - Square Shape */
+.timeline-card {
+  min-width: 260px;
+  width: 260px;
+  height: 260px;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-front {
+  background: var(--white);
+  border: 2px solid #e0e0e0;
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+  flex-direction: column;
+  padding: 16px 0;
+}
+
+/* Year Display on Card Front */
+.card-year {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: var(--intel-blue);
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.card-back {
+  background: linear-gradient(135deg, var(--intel-blue), var(--intel-light));
+  transform: rotateY(180deg);
+  z-index: 1;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.card-icon {
+  width: 90%;
+  height: 90%;
+  max-width: 220px;
+  max-height: 220px;
+}
+
+/* Hover and Active States */
+.timeline-card:hover .card-front {
+  transform: rotateY(-180deg);
+  opacity: 0;
+}
+
+.timeline-card:hover .card-back {
+  transform: rotateY(0deg);
+  box-shadow: var(--shadow-lg);
+}
+
+.timeline-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Card Info */
+.card-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--white);
+  text-align: center;
+  animation: revealText 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+}
+
+@keyframes revealText {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-content h3 {
+  font-size: 1.6em;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.card-content h4 {
+  font-size: 0.95em;
+  font-weight: 600;
+  margin: 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.95;
+}
+
+.card-content p {
+  font-size: 0.85em;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin: 0;
+  word-spacing: 0.1em;
+}
+
+/* Footer */
+.timeline-footer {
+  text-align: center;
+  padding: 100px 20px;
+  background: var(--bg-light);
+  color: var(--text-light);
+  font-size: 0.95em;
+  border-top: 1px solid #e0e0e0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-footer p {
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2em;
+  }
+
+  .hero-section p {
+    font-size: 1em;
+  }
+
+  .timeline-title {
+    font-size: 1.8em;
+    margin-bottom: 40px;
+  }
+
+  .timeline-card {
+    min-width: 160px;
+    width: 160px;
+    height: 160px;
+  }
+
+  .timeline-section {
+    padding: 60px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 60px 16px;
+  }
+
+  .hero-section h1 {
+    font-size: 1.6em;
+  }
+
+  .timeline-card {
+    min-width: 130px;
+    width: 130px;
+    height: 130px;
+  }
+
+  .card-icon {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
